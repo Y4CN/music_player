@@ -43,8 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void playSong() async {
-    final duration = await player.setUrl(
-        "https://irsv.upmusics.com/AliBZ/Bezar%20Oon%20Bere%20(320).mp3");
+    await player.setUrl(
+        "https://irsv.golsarmusic.ir/irsv-root/1401/05%20Mordad/25/Eminam/Believe.mp3");
+  //  await player.setAsset(assetPath);
+    
+
 
     await player.play();
   }
@@ -74,18 +77,28 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(CupertinoIcons.back),
+                // ),
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.back),
+                  onPressed: () {
+                    if (player.playing) {
+                      player.pause();
+                    } else {
+                      player.play();
+                    }
+
+                    //here use setSate listening so UI can be updated :D
+                  },
+                  icon: player.playing
+                      ? const Icon(CupertinoIcons.pause)
+                      : const Icon(CupertinoIcons.play),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.play),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.forward),
-                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(CupertinoIcons.forward),
+                // ),
               ],
             )
           ],
